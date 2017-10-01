@@ -15,6 +15,7 @@ library(ggthemes)
 library(here)
 library(hrbrthemes)
 data_directory <- paste(dirname(here()), "data", sep = "/")
+write_data_directory <- here("data")
 main_data <- readRDS(paste(data_directory, "scf 2016.rds", sep = "/"))
 replicate_data <- readRDS(paste(data_directory, "scf 2016 rw.rds", sep = "/"))
 
@@ -54,6 +55,7 @@ total_income_pctiles <- quantile_vector %>%
   unlist %>%
   data.frame(total_ntile = quantile_vector * 100, total_ntile_value = .)
 
+readr::write_csv(total_income_pctiles, paste(write_data_directory, "overall_percentiles.csv", sep = "/"))
 
 ##  ............................................................................
 ##  Calculate income quantiles by race                                      ####
@@ -75,6 +77,8 @@ racial_income_pctiles %<>% dplyr::mutate(race = forcats::fct_recode(race,
                                            Latino = "3"))
 
 racial_income_pctiles$total_ntile <- findInterval(racial_income_pctiles$racial_ntile_value, total_income_pctiles$total_ntile_value)
+
+readr::write_csv(racial_income_pctiles, paste(write_data_directory, "racial_percentiles.csv", sep = "/"))
 
 #   ____________________________________________________________________________
 #   Generate plots                                                          ####

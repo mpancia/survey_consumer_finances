@@ -58,7 +58,7 @@ which means that `race == 5` corresponds to anyone who does not identify as Whit
 
 ## Output
 
-The output is several plots that show the relative income percentiles for different races. These are found in the `plots` folder, with both transparent and non-transparent versions.
+The output is several plots that show the relative income percentiles for different races. These are found in the `plots` folder, with both transparent and non-transparent versions. In addition, the underlying percentile data is stored in CSV format in the `data` folder. 
 
 ## Usage
 
