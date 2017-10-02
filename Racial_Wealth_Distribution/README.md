@@ -1,14 +1,14 @@
-# Relative Racial Income 
+# Relative Racial Wealth 
 
-This is a short analysis of the relative income percentiles of different racial groups, as derived from data in the SCF. This reproduces variants of a plot found at the [PPP](http://peoplespolicyproject.org/2017/09/29/the-best-way-to-represent-the-overall-racial-wealth-gap/). 
+This is a short analysis of the relative wealth percentiles of different racial groups, as derived from data in the SCF. This reproduces variants of a plot found at the [PPP](http://peoplespolicyproject.org/2017/09/29/the-best-way-to-represent-the-overall-racial-wealth-gap/). 
 
 ## Methodology
 
 * Obtain the 2016 SCF data;
 * Subset the data to Black, White and Latino participants;
-* Calculate the overall income percentiles for the entire population using the `survey` package;
-* Calculate the internal income percentiles by race;
-* Plot the internal income percentiles against the overall income percentiles.
+* Calculate the overall wealth percentiles for the entire population using the `survey` package;
+* Calculate the internal wealth percentiles by race;
+* Plot the internal wealth percentiles against the overall wealth percentiles.
 
 ### A Note on Coding
 
@@ -56,9 +56,19 @@ In the summary file, the variable `race` is determined by the following logic:
 
 which means that `race == 5` corresponds to anyone who does not identify as White, Black, or Hispanic/Latino.
 
+The `networth` variable is computed as follows:
+
+```
+    NETWORTH=ASSET-DEBT;
+    IF (NETWORTH<=.Z) THEN PUT Y1= &PID= FIN= NFIN= DEBT= LIQ= CDS= NMMF=
+      STOCKS=  BOND=  RETQLIQ=  SAVBND=  CASHLI=  OTHMA=  OTHFIN= 
+      VEHIC= HOUSES= ORESRE= NNRESRE= BUS= OTHNFIN=
+      MRTHEL= RESDBT= OTHLOC= CCBAL= INSTALL= ODEBT=;
+```
+
 ## Output
 
-The output is several plots that show the relative income percentiles for different races. These are found in the `plots` folder, with both transparent and non-transparent versions. In addition, the underlying percentile data is stored in CSV format in the `data` folder. 
+The output is several plots that show the relative wealth percentiles for different races. These are found in the `plots` folder, with both transparent and non-transparent versions. In addition, the underlying percentile data is stored in CSV format in the `data` folder. 
 
 ## Usage
 
