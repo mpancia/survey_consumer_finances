@@ -6,6 +6,7 @@
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
+set.seed(100)
 library(survey)
 library(magrittr)
 library(dplyr)
@@ -48,7 +49,7 @@ quantile_vector <- seq(0, 1, .01)
 
 total_wealth_pctiles <- quantile_vector %>%
   lapply(function(x){lodown:::scf_MIcombine(
-    with( filtered_design , svyquantile( ~ networth , x ) )
+    with( main_design , svyquantile( ~ networth , x ) )
   )}
   ) %>%
   lapply(function(x) x$coefficients) %>%
