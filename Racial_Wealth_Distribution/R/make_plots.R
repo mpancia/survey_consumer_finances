@@ -54,7 +54,7 @@ total_wealth_pctiles <- quantile_vector %>%
   ) %>%
   lapply(function(x) x$coefficients) %>%
   unlist %>%
-  data.frame(total_ntile = quantile_vector * 100, total_ntile_value = .)
+  data.frame(total_ntile = as.integer(quantile_vector * 100), total_ntile_value = .)
 
 readr::write_csv(total_wealth_pctiles, paste(write_data_directory, "overall_percentiles.csv", sep = "/"))
 
